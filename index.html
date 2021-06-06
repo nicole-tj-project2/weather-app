@@ -11,19 +11,54 @@
         <h1>Weather App</h1>
     </header>
     <main>
-        <form action="./weather.html">
-            <label for="location">Location:</label>
-            <select name="location" id="location">
-                <option value="Toronto, CA">Toronto</option>
-                <option value="Hamilton, CA">Hamilton</option>
-                <option value="Scarborough, CA">Scarborough</option>
-                <option value="Winnipeg, CA">Winnipeg</option>
-                <option value="Halifax, CA">Halifax</option>
-            </select>
-            <!-- <a href="./weather.html"> -->
-            <button type="submit">Submit</button>  
-            <!-- </a>           -->
-        </form>
+        <section class="top">
+            <form action="./weather.html">
+                <label for="location">Location:</label>
+                <select name="location" id="location">
+                    <option value="Toronto, CA">Toronto</option>
+                    <option value="Hamilton, CA">Hamilton</option>
+                    <option value="Scarborough, CA">Scarborough</option>
+                    <option value="Winnipeg, CA">Winnipeg</option>
+                    <option value="Halifax, CA">Halifax</option>
+                </select>
+                    <button type="submit">Submit</button>  
+                </form>
+        </section>
+        <section class="results">
+            <section class="location">
+                <h2 class="city"></h2>
+                <time class="date"></time>
+            </section>
+            <section class="current-weather">
+                <div class="weather">
+                    <div><img class="weather-icon" src="" alt=""></div>
+                    <p class="weather-description">
+                        
+                    </p>
+                    
+                </div>
+                
+                <div class="current-temperature">
+                    
+                </div>
+                <div class="high-temperature">
+                    
+                </div>
+                <div class="low-temperature">
+                    
+                </div>
+                
+                
+            </section>
+            <section class="weather-stats">
+                <ul>
+                    <li class="stats sunrise"></li>
+                    <li class="stats sunset"></li>
+                    <li class="stats wind"></li>
+                    <li class="stats pop"></li>
+                </ul>
+            </section>
+        </section>
     </main>
     <script src="./script.js"></script>
 </body>

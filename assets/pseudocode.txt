@@ -1,8 +1,13 @@
 next steps
-1. naming convention?
-2. page layout
-3. complete MVP
-4. List and prioritize stretch goals
+- complete MVP
+- List and prioritize stretch goals
+- method to convert unix timestamp
+- degree celcius or farenheit 
+- wind units
+- pop units
+
+Stretch goals
+- dynamic background
 
 Java script:
 
