@@ -4,17 +4,31 @@ weatherApp.geoURL = 'http://api.openweathermap.org/geo/1.0/direct';
 weatherApp.oneCallURL = 'https://api.openweathermap.org/data/2.5/onecall';
 weatherApp.key = 'bbfcaf59532e863784c25652f4481a55';
 
+
 // Retreiving input from user
+// weatherApp.getLocation = () => {
+//     // retrieve the form element
+//     const selEl = document.querySelector("select");
+//     selEl.addEventListener('change', (e) => {
+//     const inputValue = e.target.value;
+//         console.log(inputValue)
+//         weatherApp.getCoordinates(inputValue);
+//     })
+//     }
+
 weatherApp.getLocation = () => {
-// retrieve the form element
-    const formEl = document.querySelector("select");
-    formEl.addEventListener("change", (e) => {
+    // retrieve the form element
+    const formEl = document.querySelector("form");
+    formEl.addEventListener('submit', (e) => {
         e.preventDefault();
-        // const selEl = document.getElementById("location");
-        inputValue = formEl.value;
+        selEl = document.querySelector("select");
+        const inputValue = selEl.value;
+        weatherApp.getCoordinates(inputValue);
+        // formEl.removeEventListener();
+        window.location.href = './weather.html';
     })
-    return inputValue;
-}
+    }
+
 
 // getting the coordinates with GEOCODING API
 weatherApp.getCoordinates = (location) => {
@@ -54,8 +68,7 @@ weatherApp.getCoordinates = (location) => {
 
 // Init
 weatherApp.init = () => {
-    const location = weatherApp.getLocation();
-    weatherApp.getCoordinates(location);
+    weatherApp.getLocation();
 }
 
 weatherApp.init();
