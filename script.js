@@ -72,14 +72,33 @@ weatherApp.getCoordinates = (location) => {
     })
 }
 
+// Time and date conversion method
+weatherApp.convertTime = (unixTime) => {
+    const milliseconds = unixTime * 1000 
+    const dateObject = new Date(milliseconds);
+    const localDateFormat = dateObject.toLocaleString();
+    return localDateFormat;
+}
+
+weatherApp.formatTemp = (temp) => {
+    let formattedTemp = Math.floor(temp);
+    formattedTemp = formattedTemp + '\u2103';
+    return formattedTemp;
+}
+
+weatherApp.convertSpeed = (speed) => {
+    let newSpeed = speed * 3.6;
+    newSpeed = Math.floor(newSpeed) +  ` km/h`;
+    return newSpeed;
+}
+
+
 weatherApp.displayResults = (weatherData, displayLocation) => {
     console.log(weatherData);
     // Putting data in variables
     const location = displayLocation;
     const date = weatherData.current.dt;
-    const milliseconds = date * 1000 
-    const dateObject = new Date(milliseconds);
-    const localDateFormat = dateObject.toLocaleString();
+    const formattedDate = weatherApp.convertTime(date);
     const temp = weatherData.current.temp;
     const high = weatherData.daily[0].temp.max;
     const low = weatherData.daily[0].temp.min;
@@ -88,33 +107,37 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const desc = weatherData.current.weather[0].description;
     const sunrise = weatherData.daily[0].sunrise;
     const sunset = weatherData.daily[0].sunset;
-    const wind = weatherData.current.wind_speed +" "+ weatherData.current.wind_gust+" "+ weatherData.current.wind_deg;
-    const pop = weatherData.daily[0].pop;
-    console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+localDateFormat+" "+sunrise+" "+sunset+" "+wind+" "+pop);
+    const windSpeed = weatherData.current.wind_speed 
+    const formattedSpeed = weatherApp.convertSpeed(windSpeed);
+    const windGust = weatherData.current.wind_gust;
+    const formattedGust = weatherApp.convertSpeed(windGust);
+    let pop = weatherData.daily[0].pop;
+    pop = (pop * 100) + "%";
+    console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+formattedDate+" "+sunrise+" "+sunset+" "+pop);
     console.log(displayIcon);
 
     // Displaying data on page
     const city = document.querySelector(".city");
     city.textContent = location;
     const displayDate = document.querySelector(".date");
-    displayDate.textContent = localDateFormat;
+    displayDate.textContent = formattedDate;
     const weatherIcon = document.querySelector(".weather-icon");
     weatherIcon.src = displayIcon;
     weatherIcon.alt = "Icon displaying "+ desc;
     const displayDesc = document.querySelector(".weather-description");
     displayDesc.textContent = desc;
     const displayTemp = document.querySelector(".current-temperature");
-    displayTemp.textContent = temp;
+    displayTemp.textContent = weatherApp.formatTemp(temp);
     const displayHigh = document.querySelector(".high-temperature");
-    displayHigh.textContent = high;
+    displayHigh.textContent = weatherApp.formatTemp(high);
     const displayLow = document.querySelector(".low-temperature");
-    displayLow.textContent = low;
+    displayLow.textContent = weatherApp.formatTemp(low);
     const displaySunrise = document.querySelector(".sunrise");
-    displaySunrise.textContent = sunrise;
+    displaySunrise.textContent = weatherApp.convertTime(sunrise);
     const displaySunset = document.querySelector(".sunset");
-    displaySunset.textContent = sunset;
+    displaySunset.textContent = weatherApp.convertTime(sunset);
     const windData = document.querySelector(".wind");
-    windData.textContent = wind;
+    windData.textContent = formattedSpeed +" "+ formattedGust;
     const precip = document.querySelector(".pop");
     precip.textContent = pop;
     
