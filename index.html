@@ -7,12 +7,12 @@
     <title>Weather App</title>
 </head>
 <body>
-    <header>
-        <h1>Weather App</h1>
-    </header>
     <main>
-        <section class="top">
-            <form action="./weather.html">
+        <header>
+            <h1>Weather App</h1>
+        </header>
+        <section class="input">
+            <form action="">
                 <label for="location">Location:</label>
                 <select name="location" id="location">
                     <option value="Toronto, CA">Toronto</option>
@@ -24,36 +24,33 @@
                     <button type="submit">Submit</button>  
                 </form>
         </section>
-        <section class="results">
-            <section class="location">
+        <section class="results container">
+            <section class="location item-1">
                 <h2 class="city"></h2>
                 <time class="date"></time>
             </section>
-            <section class="current-weather">
-                <div class="weather">
-                    <div><img class="weather-icon" src="" alt=""></div>
-                    <p class="weather-description">
-                        
-                    </p>
-                    
-                </div>
-                
-                <p class="temp current-temperature"></p>
 
-                <p class="temp high-temperature"></p>
+            <p class="temp current-temperature item-2"></p>
 
-                <p class="temp low-temperature"></p>
+            <div class="weather item-7">
+                <div><img class="weather-icon" src="" alt=""></div>
+                <p class="weather-description"></p>
+            </div>
                 
-                
-            </section>
-            <section class="weather-stats">
-                <ul>
-                    <li class="stats sunrise"></li>
-                    <li class="stats sunset"></li>
-                    <li class="stats wind"></li>
-                    <li class="stats pop"></li>
+                <ul class="item-3">
+                    <li class="feels-like"></li>
+                    <li class="temp high-temperature"></li>
+                    <li class="temp low-temperature"></li>
                 </ul>
-            </section>
+            
+                <ul class="item-4">
+                    <li class="pop"></li>
+                    <li class="sunrise"></li>
+                    <li class="sunset"></li>
+                </ul>
+
+                <p class="wind-speed item-5"></p>
+                <p class="wind-gust item-6"></p>
         </section>
     </main>
     <script src="./script.js"></script>
