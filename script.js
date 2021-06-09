@@ -106,7 +106,7 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const high = weatherData.daily[0].temp.max;
     const low = weatherData.daily[0].temp.min;
     const icon = weatherData.current.weather[0].icon;
-    let displayIcon = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    let displayIcon = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     const desc = weatherData.current.weather[0].description;
     const sunrise = weatherData.daily[0].sunrise;
     const sunset = weatherData.daily[0].sunset;
