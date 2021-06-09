@@ -1,6 +1,6 @@
 const weatherApp = {};
 
-weatherApp.geoURL = 'http://api.openweathermap.org/geo/1.0/direct';
+weatherApp.geoURL = 'https://api.openweathermap.org/geo/1.0/direct';
 weatherApp.oneCallURL = 'https://api.openweathermap.org/data/2.5/onecall';
 weatherApp.key = 'bbfcaf59532e863784c25652f4481a55';
 
