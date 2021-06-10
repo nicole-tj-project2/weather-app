@@ -4,19 +4,6 @@ weatherApp.geoURL = 'https://api.openweathermap.org/geo/1.0/direct';
 weatherApp.oneCallURL = 'https://api.openweathermap.org/data/2.5/onecall';
 weatherApp.key = 'bbfcaf59532e863784c25652f4481a55';
 
-
-// Retreiving input from user
-// weatherApp.getLocation = () => {
-//     // retrieve the form element
-//     const selEl = document.querySelector("select");
-//     selEl.addEventListener('change', (e) => {
-//     const inputValue = e.target.value;
-//         console.log(inputValue)
-//         weatherApp.getCoordinates(inputValue);
-//     })
-//     }
-
-
 weatherApp.locationDefault = () => {
     const selEl = document.querySelector("select");
     selEl.options[0].selected = 'selected';
@@ -35,7 +22,7 @@ weatherApp.getLocation = () => {
         const inputValue = selEl.value;
         weatherApp.getCoordinates(inputValue);
     })
-    }
+}
 
 
 // getting the coordinates with GEOCODING API
@@ -75,11 +62,21 @@ weatherApp.getCoordinates = (location) => {
 }
 
 // Time and date conversion method
-weatherApp.convertTime = (unixTime) => {
-    const milliseconds = unixTime * 1000 
+weatherApp.convertTime = (unixTime,tz,type) => {
+    
+    const milliseconds = (unixTime) * 1000; 
     const dateObject = new Date(milliseconds);
-    const localDateFormat = dateObject.toLocaleString();
-    return localDateFormat;
+    // Format date according to timezone. Type 1 returns only date and type 2 returns only time
+    if(type === 1) {
+        const options = { timeZone:tz, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        localDateFormat = dateObject.toLocaleDateString([], options);
+        return localDateFormat;
+    } else if(type === 2) {
+        const options = { timeZone: tz, timeStyle:"short" };
+        const timeOnly = dateObject.toLocaleTimeString('en-US', options);
+        return timeOnly;
+    }
+    
 }
 
 weatherApp.formatTemp = (temp) => {
@@ -89,9 +86,14 @@ weatherApp.formatTemp = (temp) => {
 }
 
 weatherApp.convertSpeed = (speed) => {
-    let newSpeed = speed * 3.6;
-    newSpeed = Math.floor(newSpeed) +  ` km/h`;
-    return newSpeed;
+    // Convert from m/s to km/h
+    // Wind gust can sometimes be non existent hence check and return nil
+    if(speed) {
+        let newSpeed = speed * 3.6;
+        newSpeed = Math.floor(newSpeed) +  ` km/h`;
+        return newSpeed;
+    } else return "Nil"
+    
 }
 
 
@@ -101,7 +103,7 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     // Putting data in variables
     const location = displayLocation;
     const date = weatherData.current.dt;
-    const formattedDate = weatherApp.convertTime(date);
+    const timeZone = weatherData.timezone;
     const temp = weatherData.current.temp;
     const feels = weatherData.current.feels_like;
     const high = weatherData.daily[0].temp.max;
@@ -112,20 +114,18 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const sunrise = weatherData.daily[0].sunrise;
     const sunset = weatherData.daily[0].sunset;
     const windSpeed = weatherData.current.wind_speed 
-    const formattedSpeed = weatherApp.convertSpeed(windSpeed);
     // ^^^
     const windGust = weatherData.current.wind_gust;
-    const formattedGust = weatherApp.convertSpeed(windGust);
     let pop = weatherData.daily[0].pop;
     pop = (pop * 100) + "%";
-    console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+formattedDate+" "+sunrise+" "+sunset+" "+pop);
-    console.log(displayIcon);
+    // console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+formattedDate+" "+sunrise+" "+sunset+" "+pop);
+    // console.log(displayIcon);
 
     // Displaying data on page
     const city = document.querySelector(".city");
     city.textContent = `Current weather for ${location}`;
     const displayDate = document.querySelector(".date");
-    displayDate.textContent = formattedDate;
+    displayDate.textContent = weatherApp.convertTime(date,timeZone,1);
     const weatherIcon = document.querySelector(".weather-icon");
     weatherIcon.src = displayIcon;
     weatherIcon.alt = "Icon displaying "+ desc;
@@ -140,13 +140,13 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const displayLow = document.querySelector(".low-temperature");
     displayLow.innerHTML = `Low ${weatherApp.formatTemp(low)}`;
     const displaySunrise = document.querySelector(".sunrise");
-    displaySunrise.textContent = weatherApp.convertTime(sunrise);
+    displaySunrise.textContent = `Sunrise ${weatherApp.convertTime(sunrise,timeZone,2)}`;
     const displaySunset = document.querySelector(".sunset");
-    displaySunset.textContent = weatherApp.convertTime(sunset);
+    displaySunset.textContent = `Sunset ${weatherApp.convertTime(sunset,timeZone,2)}`;
     const displaySpeed = document.querySelector(".wind-speed");
-    displaySpeed.innerHTML = `Wind Speed ${formattedSpeed}`;
+    displaySpeed.innerHTML = `Wind Speed ${weatherApp.convertSpeed(windSpeed)}`;
     const displayGust = document.querySelector(".wind-gust");
-    displayGust.innerHTML = `Wind Gust ${formattedGust}`;
+    displayGust.innerHTML = `Wind Gust ${weatherApp.convertSpeed(windGust)}`;
     const precip = document.querySelector(".pop");
     precip.innerHTML = `POP ${pop}`;
     
