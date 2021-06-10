@@ -97,6 +97,7 @@ weatherApp.convertSpeed = (speed) => {
 
 weatherApp.displayResults = (weatherData, displayLocation) => {
     console.log(weatherData);
+    // const {current, daily} = weatherData <-decunstructing
     // Putting data in variables
     const location = displayLocation;
     const date = weatherData.current.dt;
@@ -106,12 +107,13 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const high = weatherData.daily[0].temp.max;
     const low = weatherData.daily[0].temp.min;
     const icon = weatherData.current.weather[0].icon;
-    let displayIcon = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    let displayIcon = `https://openweathermap.org/img/wn/${icon}@4x.png`;
     const desc = weatherData.current.weather[0].description;
     const sunrise = weatherData.daily[0].sunrise;
     const sunset = weatherData.daily[0].sunset;
     const windSpeed = weatherData.current.wind_speed 
     const formattedSpeed = weatherApp.convertSpeed(windSpeed);
+    // ^^^
     const windGust = weatherData.current.wind_gust;
     const formattedGust = weatherApp.convertSpeed(windGust);
     let pop = weatherData.daily[0].pop;
@@ -132,21 +134,21 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const displayTemp = document.querySelector(".current-temperature");
     displayTemp.textContent = weatherApp.formatTemp(temp);
     const displayFeels = document.querySelector(".feels-like");
-    displayFeels.textContent = weatherApp.formatTemp(feels);
+    displayFeels.innerHTML = `Feels Like ${weatherApp.formatTemp(feels)}`;
     const displayHigh = document.querySelector(".high-temperature");
-    displayHigh.textContent = weatherApp.formatTemp(high);
+    displayHigh.innerHTML = `High ${weatherApp.formatTemp(high)}`;
     const displayLow = document.querySelector(".low-temperature");
-    displayLow.textContent = weatherApp.formatTemp(low);
+    displayLow.innerHTML = `Low ${weatherApp.formatTemp(low)}`;
     const displaySunrise = document.querySelector(".sunrise");
     displaySunrise.textContent = weatherApp.convertTime(sunrise);
     const displaySunset = document.querySelector(".sunset");
     displaySunset.textContent = weatherApp.convertTime(sunset);
     const displaySpeed = document.querySelector(".wind-speed");
-    displaySpeed.textContent = formattedSpeed;
+    displaySpeed.innerHTML = `Wind Speed ${formattedSpeed}`;
     const displayGust = document.querySelector(".wind-gust");
-    displayGust.textContent = formattedGust;
+    displayGust.innerHTML = `Wind Gust ${formattedGust}`;
     const precip = document.querySelector(".pop");
-    precip.textContent = pop;
+    precip.innerHTML = `POP ${pop}`;
     
 
 }

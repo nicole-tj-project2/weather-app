@@ -1,5 +1,164 @@
-// asdf
+@import './setup';
 
-h1 {
-    background-color: white;
+// variables
+$body: #333333;
+$heading: #575757;
+$accent-1: #ec6e4c;
+$accent-2: #eda458;
+$background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba
+(0,77,119,0.9457983877144608) 100%);
+$text-shadow: text-shadow 1px 1px 2px rgba(51, 51, 51, 1);
+
+// mixins 
+@mixin heading($size) {
+    color: $heading;
+    font-family: 'Montserrat', sans-serif;
+    font-size: $size;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@mixin body {
+    color: $body;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+}
+
+@mixin button {
+    color: #ffffff;
+    border: transparent;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+// General styles
+
+html {
+    font-size: 125%;
+}
+
+h1,
+h2,
+p,
+ul,
+fieldset,
+legend {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    height: 100%;
+}
+
+// Main styles
+
+body {
+    @include body;
+    background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+    height: 80%;
+    max-width: 1000px;
+    width: 60%;
+    overflow: hidden;
+}
+
+// Header styles here
+
+header {
+    text-align: center;
+    padding: 4%;
+    background: $accent-2;
+    border-bottom: 6px solid $accent-1;
+        h1 {
+            @include heading(3rem);
+            text-shadow: 1px 1px 2px rgba(51, 51, 51, 1);
+        }
+}
+
+h2 {
+    @include heading(1.2rem);
+}
+
+form {
+    margin-top: 5%;
+    text-align: center;
+}
+
+button {
+    @include button;
+    background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
+}
+
+// grid layout here
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 30%;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas: 
+    "item-1 item-1 item-1 item-1 item-1 item-7"
+    ". item-2 item-2 item-2 . item-7" 
+    "item-3 item-3 . item-4 item-4 item-7";
+    padding: 5%;
+}
+
+.item-1 {
+    grid-area: item-1;
+    place-self: center;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.item-2 {
+    grid-area: item-2;
+    place-self: center;
+    @include heading(2rem);
+}
+
+.item-3 {
+    grid-area: item-3;
+    place-self: center;
+}
+
+.item-4 {
+    grid-area: item-4;
+    place-self: center;
+    text-align: right;
+}
+
+.item-7 {
+    background: yellow;
+    grid-area: item-7;
+    place-self: center;
+    text-align: center;
+}
+
+li {
+    line-height: 2rem;
 }
