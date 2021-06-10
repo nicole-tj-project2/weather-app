@@ -140,9 +140,9 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const displayLow = document.querySelector(".low-temperature");
     displayLow.innerHTML = `Low ${weatherApp.formatTemp(low)}`;
     const displaySunrise = document.querySelector(".sunrise");
-    displaySunrise.textContent = `Sunrise ${weatherApp.convertTime(sunrise,timeZone,2)}`;
+    displaySunrise.innerHTML = `Sunrise ${weatherApp.convertTime(sunrise,timeZone,2)}`;
     const displaySunset = document.querySelector(".sunset");
-    displaySunset.textContent = `Sunset ${weatherApp.convertTime(sunset,timeZone,2)}`;
+    displaySunset.innerHTML = `Sunset ${weatherApp.convertTime(sunset,timeZone,2)}`;
     const displaySpeed = document.querySelector(".wind-speed");
     displaySpeed.innerHTML = `Wind Speed ${weatherApp.convertSpeed(windSpeed)}`;
     const displayGust = document.querySelector(".wind-gust");
