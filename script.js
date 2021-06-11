@@ -123,7 +123,7 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
 
     // Displaying data on page
     const city = document.querySelector(".city");
-    city.textContent = `Current weather for ${location}`;
+    city.textContent = `Current weather in ${location}`;
     const displayDate = document.querySelector(".date");
     displayDate.textContent = weatherApp.convertTime(date,timeZone,1);
     const weatherIcon = document.querySelector(".weather-icon");
