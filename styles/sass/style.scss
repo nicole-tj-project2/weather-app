@@ -46,7 +46,8 @@ h2,
 p,
 ul,
 fieldset,
-legend {
+legend
+ {
     margin: 0;
     padding: 0;
 }
@@ -86,6 +87,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     
 }
 
@@ -101,13 +103,28 @@ main {
     margin: auto auto;
 }
 
+footer {
+    background: $accent-1;
+    font-size: 0.7rem;
+    text-align: center;
+    color: rgba(0,41,66,1);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5%;
+        a {
+            color: rgba(0,41,66,1);
+            text-decoration: underline;
+        }
+}
+
 // Header styles here
 
 header {
     text-align: center;
     padding: 1%;
     background: $accent-2;
-    border-bottom: 6px solid $accent-1;
+    border-bottom: 20px solid $accent-1;
         h1 {
             @include heading(3rem);
             color: rgba(0,41,66,1);
@@ -125,6 +142,14 @@ form {
     margin-top: 2%;
     text-align: center;
     font-size: 1rem;
+    text-transform: uppercase;
+        select {
+            border: none;
+            border-bottom: 1px solid  rgba(0,41,66,1);
+            width: 20%;
+            min-width: 120px;
+            padding: 1%;
+        }
 }
 
 button {
@@ -132,6 +157,7 @@ button {
     padding: 1%;
     font-size: 1rem;
     background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
+    margin-left: 2%;
 }
 
 .weather-description {
@@ -175,6 +201,7 @@ button {
     place-self: center;
     text-align: right;
     font-size: 1.2rem;
+    margin-bottom: 10%;
 }
 
 .item-7 {
@@ -189,7 +216,20 @@ li {
 }
 
 @media (max-height: 750px) {
-    // main {
+
+    body {
+        @include body;
+        background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        
+    }
+
+    main {
         // background: #ffffff;
         // border-radius: 5%;
         // box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
@@ -197,8 +237,21 @@ li {
         // width: 60%;
         // height: 80%;
         // overflow: hidden;
-        // margin: auto auto;
-    // }
+        margin: auto auto;
+    }
+
+    footer {
+        background: $accent-1;
+        text-align: center;
+        color: #ffffff;
+        position: absolute;
+        bottom: -200;
+        width: 100%;
+        padding: 0.5%;
+            a {
+                color: rgba(0,41,66,1);
+            }
+    }
     
     // Header styles here
     
@@ -241,11 +294,11 @@ li {
     .container {
         // display: grid;
         // grid-template-columns: repeat(5, 1fr);
-        // grid-template-rows: 1fr 1fr 3fr;
-        // grid-template-areas:
-        // "item-1 item-1 item-1 item-1 item-1"
-        // ". item-2 item-2 item-2 . " 
-        // "item-3 item-3 item-7 item-4 item-4";
+        grid-template-rows: 1fr 1fr 3fr;
+        grid-template-areas:
+        "item-1 item-1 item-1 item-1 item-1"
+        ". item-2 item-2 item-2 . " 
+        "item-3 item-3 item-7 item-4 item-4";
         padding: 4%;
     }
     
@@ -304,6 +357,7 @@ li {
 }
 
 @media (max-width: 900px) {
+ 
     body {
         height:max-content;
     }
@@ -315,6 +369,7 @@ li {
         width: 90%;
         height: auto;
         overflow:visible;
+        margin-top: 5%;
         // margin: auto auto;
     }
     
@@ -335,7 +390,7 @@ li {
     }
     
     h2 {
-        @include heading(1.2rem);
+        @include heading(1.5rem);
     }
     
     form {
@@ -366,7 +421,7 @@ li {
         // ". item-2 item-2 item-2 . " 
         // "item-3 item-3 item-7 item-4 item-4";
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 1fr 0.5fr 1fr 1fr 1fr;
+        grid-template-rows: 0.5fr 0.2fr 0.5fr 0.5fr 1fr;
         grid-template-areas:
         "item-1 item-1 item-1"
         "item-2 item-2 item-2" 
@@ -384,9 +439,129 @@ li {
     }
     
     .item-2 {
-        grid-area: item-2;
+        // grid-area: item-2;
+        // place-self: center;
+        @include heading(2.5rem);
+        margin-bottom: 2%;
+    }
+    
+    .item-3 {
+        grid-area: item-3;
         place-self: center;
-        @include heading(2rem);
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    .item-4 {
+        grid-area: item-4;
+        place-self: center;
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    .item-7 {
+        padding: 1%;
+        grid-area: item-7;
+        place-self: center;
+        text-align: center;
+    }
+    
+    li {
+        line-height: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+ 
+    body {
+        height:max-content;
+    }
+    main {
+        // background: #ffffff;
+        border-radius: 0;
+        // box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+        // max-width: 1000px;
+        width: 90%;
+        height: auto;
+        overflow:visible;
+        margin-top: 6%;
+        margin-bottom: 20%;
+        // margin: auto auto;
+    }
+    
+    // Header styles here
+    
+    header {
+        // text-align: center;
+        padding: 4% 2% 4%;
+        // background: $accent-2;
+        // border-bottom: 6px solid $accent-1;
+            h1 {
+                @include heading(1.5rem);
+                color: rgba(0,41,66,1);
+                padding: 1%;
+                text-shadow: 1px 1px 2px rgba(51, 51, 51, 1);
+    
+            }
+    }
+    
+    h2 {
+        @include heading(0.7rem);
+    }
+    
+    form {
+        margin-top: 1.5%;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    
+    button {
+        // @include button;
+        border-radius: 0;
+        // padding: 1%;
+        font-size: 1rem;
+        // background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
+        width: 90%;
+        margin: 2% auto;
+        height: 40px;
+    }
+    
+    .weather-description {
+        font-size: 1rem;
+        text-transform: capitalize;
+    }
+    
+    // grid layout here
+    .container {
+        // display: grid;
+        // grid-template-columns: repeat(5, 1fr);
+        // grid-template-rows: 1fr 1fr 3fr;
+        // grid-template-areas:
+        // "item-1 item-1 item-1 item-1 item-1"
+        // ". item-2 item-2 item-2 . " 
+        // "item-3 item-3 item-7 item-4 item-4";
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 0.5fr 0.2fr 0.5fr 0.5fr 1fr;
+        grid-template-areas:
+        "item-1 item-1 item-1"
+        "item-2 item-2 item-2" 
+        ". item-7 ."
+        "item-3 item-3 item-3"
+        "item-4 item-4 item-4";
+        padding: 3%;
+    }
+    
+    .item-1 {
+        grid-area: item-1;
+        place-self: center;
+        text-align: center;
+        line-height: 2rem;
+    }
+    
+    .item-2 {
+        // grid-area: item-2;
+        // place-self: center;
+        @include heading(1.5rem);
     }
     
     .item-3 {
