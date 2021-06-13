@@ -119,7 +119,7 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     // ^^^
     const windGust = weatherData.current.wind_gust;
     let pop = weatherData.daily[0].pop;
-    pop = (pop * 100) + "%";
+    pop = Math.floor((pop * 100)) + "%";
     // console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+formattedDate+" "+sunrise+" "+sunset+" "+pop);
     // console.log(displayIcon);
 

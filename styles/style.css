@@ -268,7 +268,7 @@ html {
 }
 
 body {
-  color: black;
+  color: white;
   font-family: "Heebo", sans-serif;
   font-size: 1rem;
   background-repeat: no-repeat;
@@ -286,7 +286,7 @@ body {
 }
 
 main {
-  background: #fff;
+  background: transparent;
   border-radius: 5%;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
           box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -315,22 +315,21 @@ footer a {
 header {
   text-align: center;
   padding: 1%;
-  background: #eda458;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(13%, #002942), to(rgba(0, 77, 119, 0.9457983877)));
+  background: linear-gradient(180deg, #002942 13%, rgba(0, 77, 119, 0.9457983877) 100%);
   border-bottom: 20px solid #ec6e4c;
 }
 header h1 {
-  color: black;
   font-family: "Montserrat", sans-serif;
   font-size: 3rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #002942;
+  color: white;
   padding: 2%;
   text-shadow: 1px 1px 2px #333333;
 }
 
 h2 {
-  color: black;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
@@ -339,16 +338,22 @@ h2 {
 
 form {
   margin-top: 2%;
+  margin-bottom: 2%;
   text-align: center;
   font-size: 1rem;
   text-transform: uppercase;
+  color: white;
+  background: none;
 }
 form select {
   border: none;
-  border-bottom: 1px solid #002942;
+  border-bottom: 1px solid white;
   width: 20%;
   min-width: 120px;
   padding: 1%;
+  font-size: 1rem;
+  color: white;
+  background: none;
 }
 
 button {
@@ -357,10 +362,8 @@ button {
   text-transform: uppercase;
   border-radius: 6px;
   cursor: pointer;
-  padding: 1%;
   font-size: 1rem;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(13%, #002942), to(rgba(0, 77, 119, 0.9457983877)));
-  background: linear-gradient(180deg, #002942 13%, rgba(0, 77, 119, 0.9457983877) 100%);
+  background: #002942;
   margin-left: 2%;
 }
 
@@ -387,7 +390,6 @@ button {
 .item-2 {
   grid-area: item-2;
   place-self: center;
-  color: black;
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: 700;
@@ -419,9 +421,9 @@ li {
   line-height: 2rem;
 }
 
-@media (max-height: 750px) {
+@media (max-height: 620px) and (min-width: 1300px) {
   body {
-    color: black;
+    color: white;
     font-family: "Heebo", sans-serif;
     font-size: 1rem;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(13%, #002942), to(rgba(0, 77, 119, 0.9457983877)));
@@ -444,32 +446,17 @@ li {
     margin: auto auto;
   }
 
-  footer {
-    background: #ec6e4c;
-    text-align: center;
-    color: #ffffff;
-    position: absolute;
-    bottom: -200;
-    width: 100%;
-    padding: 0.5%;
-  }
-  footer a {
-    color: #002942;
-  }
-
   header h1 {
-    color: black;
     font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     padding: 1%;
   }
 
   h2 {
-    color: black;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -478,24 +465,41 @@ li {
     margin-top: 2%;
     font-size: 0.7rem;
   }
+  form select {
+    font-size: 0.7rem;
+  }
 
   button {
     padding: 0.5%;
     font-size: 0.7rem;
+    height: 30px;
+    width: 15%;
   }
 
   .weather-description {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .container {
-    grid-template-rows: 1fr 1fr 3fr;
-    grid-template-areas: "item-1 item-1 item-1 item-1 item-1" ". item-2 item-2 item-2 . " "item-3 item-3 item-7 item-4 item-4";
-    padding: 4%;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas: "item-1 item-1 item-1 item-1 item-2" "item-3 item-3 item-7 item-4 item-4";
+    padding: 2%;
+  }
+
+  .item-1 {
+    grid-area: item-1;
+    place-self: center;
+    text-align: left;
+    line-height: 2rem;
+    margin-right: 11%;
+  }
+  .item-1 .date {
+    font-size: 0.9rem;
   }
 
   .item-2 {
-    color: black;
+    margin-right: 50%;
+    text-align: left;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
@@ -503,19 +507,16 @@ li {
   }
 
   .item-3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .item-4 {
-    font-size: 1rem;
-  }
-
-  .item-7 {
-    padding: 1%;
+    font-size: 0.9rem;
+    margin-bottom: 0;
   }
 
   li {
-    line-height: 2rem;
+    line-height: 1.5rem;
   }
 }
 @media (max-width: 1350px) {
@@ -543,18 +544,16 @@ li {
     padding: 2%;
   }
   header h1 {
-    color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #002942;
+    color: white;
     padding: 1%;
     text-shadow: 1px 1px 2px #333333;
   }
 
   h2 {
-    color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
@@ -599,7 +598,6 @@ li {
   }
 
   .item-2 {
-    color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
@@ -632,7 +630,7 @@ li {
     line-height: 1.5rem;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   body {
     height: -webkit-max-content;
     height: -moz-max-content;
@@ -645,25 +643,22 @@ li {
     height: auto;
     overflow: visible;
     margin-top: 6%;
-    margin-bottom: 20%;
+    margin-bottom: 8%;
   }
 
   header {
     padding: 4% 2% 4%;
   }
   header h1 {
-    color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #002942;
     padding: 1%;
     text-shadow: 1px 1px 2px #333333;
   }
 
   h2 {
-    color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 0.7rem;
     font-weight: 700;
@@ -673,40 +668,49 @@ li {
   form {
     margin-top: 1.5%;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+  }
+  form select {
+    font-size: 0.75rem;
   }
 
   button {
     border-radius: 0;
-    font-size: 1rem;
+    font-size: 0.75rem;
     width: 90%;
     margin: 2% auto;
-    height: 40px;
+    height: 30px;
   }
 
   .weather-description {
-    font-size: 1rem;
+    font-size: 0.75rem;
     text-transform: capitalize;
+  }
+
+  .weather-icon {
+    display: none;
   }
 
   .container {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 0.5fr 0.2fr 0.5fr 0.5fr 1fr;
     grid-template-areas: "item-1 item-1 item-1" "item-2 item-2 item-2" ". item-7 ." "item-3 item-3 item-3" "item-4 item-4 item-4";
-    padding: 3%;
+    padding: 1%;
   }
 
   .item-1 {
     grid-area: item-1;
     place-self: center;
     text-align: center;
-    line-height: 2rem;
+    line-height: 1.5rem;
+  }
+  .item-1 .date {
+    font-size: 0.7;
   }
 
   .item-2 {
-    color: black;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -715,14 +719,14 @@ li {
     grid-area: item-3;
     place-self: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .item-4 {
     grid-area: item-4;
     place-self: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .item-7 {
