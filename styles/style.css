@@ -271,8 +271,6 @@ body {
   color: black;
   font-family: "Heebo", sans-serif;
   font-size: 1rem;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(13%, #002942), to(rgba(0, 77, 119, 0.9457983877)));
-  background: linear-gradient(180deg, #002942 13%, rgba(0, 77, 119, 0.9457983877) 100%);
   background-repeat: no-repeat;
   height: 100vh;
   display: -webkit-box;
@@ -288,7 +286,7 @@ body {
 }
 
 main {
-  background: #ffffff;
+  background: #fff;
   border-radius: 5%;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
           box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

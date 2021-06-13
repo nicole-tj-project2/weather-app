@@ -57,6 +57,8 @@ weatherApp.getCoordinates = (location) => {
             .then(function(weatherData){
                 // console.log(weatherData);
                 weatherApp.displayResults(weatherData, location);
+                weatherApp.dynamicBG(weatherData);
+                // console.log(weatherApp.dynamicBG(weatherData, bg))
             })
     })
 }
@@ -98,7 +100,7 @@ weatherApp.convertSpeed = (speed) => {
 
 
 weatherApp.displayResults = (weatherData, displayLocation) => {
-    console.log(weatherData);
+    // console.log(weatherData);
     // const {current, daily} = weatherData <-decunstructing
     // Putting data in variables
     const location = displayLocation;
@@ -151,6 +153,46 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     precip.innerHTML = `POP ${pop}`;
     
 
+}
+
+// Dynamic background 
+
+const body = document.querySelector('body');
+let gradient = `linear-gradient(180deg, rgba(0,41,66,0.3) 13%, rgba(0,77,119,0.7) 100%)`;
+
+weatherApp.dynamicBG = (weatherData) => {
+
+    const weatherType = weatherData.current.weather[0].description;
+
+    console.log(weatherType);
+    for (let value in weatherType) {
+
+        if (weatherType.includes('thunderstorm')) {
+            body.style.background = `${gradient}, url('assets/thunderstorm.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType.includes('drizzle')) {
+            body.style.background = `${gradient}, url('assets/drizzle.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType.includes('rain')) {
+            body.style.background = `${gradient}, url('assets/rain.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType.includes('snow')) {
+            body.style.background = `${gradient}, url('assets/snow.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType.includes('clear')) {
+            body.style.background = `${gradient}, url('assets/clear.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType === "overcast clouds" || weatherType === "broken clouds") {
+            body.style.background = `${gradient}, url('assets/clouds.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else if (weatherType.includes('clouds')) {
+            body.style.background = `${gradient}, url('assets/partial-clouds.jpg') no-repeat`;
+            body.style.backgroundSize = 'cover';
+        } else {
+            body.style.background = 'linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%)';
+        }
+            return value;
+    }
 }
 
 // Init

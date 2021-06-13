@@ -81,7 +81,6 @@ html {
 
 body {
     @include body;
-    background: linear-gradient(180deg, rgba(0,41,66,1) 13%, rgba(0,77,119,0.9457983877144608) 100%);
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;
@@ -93,7 +92,7 @@ body {
 
 
 main {
-    background: #ffffff;
+    background: #fff;;
     border-radius: 5%;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
     max-width: 1000px;
