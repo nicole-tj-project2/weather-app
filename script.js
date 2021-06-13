@@ -10,7 +10,6 @@ weatherApp.locationDefault = () => {
     // get the select element and make the default value toronto
     const defaultLocation = "Toronto, CA";
     weatherApp.getCoordinates(defaultLocation);
-    // console.log(defaultLocation);
 }
 
 weatherApp.getLocation = () => {
@@ -38,10 +37,8 @@ weatherApp.getCoordinates = (location) => {
         return results.json()
     })
     .then(function(geoData){
-        // console.log(geoData)
         const lat = geoData[0].lat;
         const lon = geoData[0].lon;
-        // console.log(`${lat}${lon}`)
         const oneCallURL = new URL(weatherApp.oneCallURL)
         oneCallURL.search = new URLSearchParams({
             lat: lat,
@@ -51,14 +48,11 @@ weatherApp.getCoordinates = (location) => {
         })
         fetch(oneCallURL)
             .then(function(data){
-                // console.log(weatherData)
                 return data.json()
             })
             .then(function(weatherData){
-                // console.log(weatherData);
                 weatherApp.displayResults(weatherData, location);
                 weatherApp.dynamicBG(weatherData);
-                // console.log(weatherApp.dynamicBG(weatherData, bg))
             })
     })
 }
@@ -100,7 +94,6 @@ weatherApp.convertSpeed = (speed) => {
 
 
 weatherApp.displayResults = (weatherData, displayLocation) => {
-    // console.log(weatherData);
     // const {current, daily} = weatherData <-decunstructing
     // Putting data in variables
     const location = displayLocation;
@@ -116,12 +109,9 @@ weatherApp.displayResults = (weatherData, displayLocation) => {
     const sunrise = weatherData.daily[0].sunrise;
     const sunset = weatherData.daily[0].sunset;
     const windSpeed = weatherData.current.wind_speed 
-    // ^^^
     const windGust = weatherData.current.wind_gust;
     let pop = weatherData.daily[0].pop;
     pop = Math.floor((pop * 100)) + "%";
-    // console.log(temp +" "+date+" "+location+" "+desc+" "+high+" "+low+" "+formattedDate+" "+sunrise+" "+sunset+" "+pop);
-    // console.log(displayIcon);
 
     // Displaying data on page
     const city = document.querySelector(".city");
@@ -198,7 +188,7 @@ weatherApp.dynamicBG = (weatherData) => {
 // Init
 weatherApp.init = () => {
     weatherApp.getLocation();
-    // Execute hard-coded location data on page load
+    // Display hard-coded location data on page load
     weatherApp.locationDefault();
 }
 
