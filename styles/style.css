@@ -365,6 +365,9 @@ button {
   font-size: 1rem;
   background: #002942;
   margin-left: 2%;
+  vertical-align: center;
+  height: 40px;
+  width: 15%;
 }
 
 .weather-description {
@@ -421,7 +424,7 @@ li {
   line-height: 2rem;
 }
 
-@media (max-height: 620px) and (min-width: 1300px) {
+@media (max-height: 620px) and (min-width: 1100px) {
   body {
     color: white;
     font-family: "Heebo", sans-serif;
@@ -574,8 +577,7 @@ li {
     cursor: pointer;
     padding: 1%;
     font-size: 0.7rem;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(13%, #002942), to(rgba(0, 77, 119, 0.9457983877)));
-    background: linear-gradient(180deg, #002942 13%, rgba(0, 77, 119, 0.9457983877) 100%);
+    background: #002942;
   }
 
   .weather-description {
